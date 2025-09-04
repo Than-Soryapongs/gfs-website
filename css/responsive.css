@@ -1,0 +1,595 @@
+/* ==========================================
+   LARGE SCREENS (1400px and up)
+   ========================================== */
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1320px;
+  }
+  
+  :root {
+    --section-padding: 6rem 0;
+  }
+  
+  .navbar.scrolled {
+    padding: 1rem 0;
+  }
+  
+  h1 { font-size: 4rem; }
+  h2 { font-size: 3rem; }
+}
+
+/* ==========================================
+   EXTRA LARGE SCREENS (1200px to 1399px)
+   ========================================== */
+@media (min-width: 1200px) and (max-width: 1399.98px) {
+  .container {
+    max-width: 1140px;
+  }
+  
+  .footer-content {
+    padding-bottom: 2.5rem;
+  }
+}
+
+/* ==========================================
+   LARGE SCREENS (992px to 1199px)
+   ========================================== */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .container {
+    max-width: 960px;
+  }
+  
+  .navbar-nav .nav-link {
+    margin: 0 0.125rem;
+  }
+  
+  ._button, ._button-2 {
+    margin-left: 0.5rem;
+  }
+}
+
+/* ==========================================
+   MEDIUM SCREENS (768px to 991px)
+   ========================================== */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  :root {
+    --section-padding: 4rem 0;
+    --container-padding: 1.25rem;
+  }
+  
+  .container {
+    max-width: 720px;
+  }
+  
+  /* Navigation adjustments */
+  .navbar {
+    padding: 0.875rem 0;
+  }  
+  
+  .navbar.scrolled {
+    padding: 0.5rem 0;
+  }
+  
+  .navbar-collapse {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(15px);
+    margin-top: 1rem;
+    padding: 1.5rem;
+    border-radius: var(--radius-large);
+    box-shadow: var(--shadow-medium);
+  }
+  
+  .navbar-nav {
+    text-align: center;
+  }
+  
+  .navbar-nav .nav-item {
+    margin: 0.25rem 0;
+  }
+  
+  .navbar-nav .nav-link {
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-medium);
+  }
+  
+  .navbar-nav .nav-link:hover {
+    background: rgba(230, 57, 70, 0.1);
+  }
+  
+  ._button, ._button-2 {
+    margin: 1rem auto 0 auto !important;
+    display: inline-block !important;
+    width: fit-content;
+  }
+  
+  /* Footer adjustments */
+  .footer-content {
+    text-align: center;
+  }
+  
+  .footer-section {
+    margin-bottom: 2rem;
+  }
+  
+  .footer-section:last-child {
+    margin-bottom: 0;
+  }
+  
+  .social-links {
+    justify-content: center;
+  }
+  
+  .footer-bottom-links {
+    justify-content: center;
+    margin-top: 1rem;
+  }
+}
+
+/* ==========================================
+   SMALL SCREENS (576px to 767px)
+   ========================================== */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  :root {
+    --section-padding: 3rem 0;
+    --container-padding: 1rem;
+  }
+  
+  .container {
+    max-width: 540px;
+  }
+  
+  /* Typography adjustments */
+  p {
+    font-size: 1rem;
+  }
+  
+  /* Button adjustments */
+  .btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
+  }
+  
+  /* Navigation */
+  .navbar {
+    padding: 0.75rem 0;
+  }
+  
+  .navbar-collapse {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(15px);
+    margin-top: 0.75rem;
+    padding: 0.875rem;
+    border-radius: var(--radius-medium);
+    box-shadow: var(--shadow-medium);
+  }
+  
+  .navbar-nav {
+    text-align: center;
+  }
+  
+  .navbar-nav .nav-item {
+    margin: 0.125rem 0;
+  }
+  
+  .navbar-nav .nav-link {
+    padding: 0.625rem 0.875rem;
+    font-size: 0.95rem;
+  }
+  
+  ._button, ._button-2 {
+    padding: 0.625rem 1.5rem !important;
+    font-size: 0.85rem !important;
+  }
+  
+  /* Footer adjustments */
+  .main-footer {
+    padding: 2.5rem 0 0;
+  }
+  
+  .footer-content {
+    text-align: center;
+    padding-bottom: 1.5rem;
+  }
+  
+  .footer-section {
+    margin-bottom: 2rem;
+  }
+  
+  .footer-logo {
+    justify-content: center;
+    font-size: 1.375rem;
+  }
+  
+  .footer-logo i {
+    font-size: 1.75rem;
+  }
+  
+  .footer-title {
+    font-size: 1.125rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .footer-links a {
+    font-size: 0.825rem;
+  }
+  
+  .social-link {
+    width: 32px;
+    height: 32px;
+    font-size: 0.8rem;
+  }
+  
+  .contact-info {
+    align-items: center;
+    text-align: left;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  
+  .contact-item {
+    font-size: 0.825rem;
+    justify-content: flex-start;
+  }
+  
+  .footer-bottom {
+    text-align: center;
+    padding: 1.25rem 0;
+  }
+  
+  .footer-bottom-links {
+    justify-content: center;
+    margin-top: 0.75rem;
+    gap: 1.5rem;
+  }
+  
+  .copyright,
+  .footer-link {
+    font-size: 0.8rem;
+  }
+}
+
+/* ==========================================
+   EXTRA SMALL SCREENS (0px to 575px)
+   ========================================== */
+@media (max-width: 575.98px) {
+  :root {
+    --section-padding: 2.5rem 0;
+    --container-padding: 0.875rem;
+  }
+  
+  /* Typography */
+  h1 { font-size: 2.25rem; }
+  h2 { font-size: 1.875rem; }
+  h3 { font-size: 1.5rem; }
+  h4 { font-size: 1.25rem; }
+  h5 { font-size: 1.125rem; }
+  h6 { font-size: 1rem; }
+  
+  p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  
+  /* Buttons */
+  .btn {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.9rem;
+    min-height: 44px;
+  }
+  
+  /* Navigation */
+  .navbar {
+    padding: 0.625rem 0;
+  }
+  
+  .custom-toggler {
+    width: 26px;
+    height: 20px;
+  }
+  
+  .hamburger-line {
+    height: 2px;
+    margin: 3px 0;
+  }
+  
+  .navbar-collapse {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(15px);
+    margin-top: 0.875rem;
+    padding: 1rem;
+    border-radius: var(--radius-medium);
+    box-shadow: var(--shadow-medium);
+    border: 1px solid rgba(230, 57, 70, 0.1);
+  }
+  
+  .navbar-nav {
+    text-align: center;
+    gap: 0;
+  }
+  
+  .navbar-nav .nav-item {
+    margin: 0;
+    width: 100%;
+  }
+  
+  .navbar-nav .nav-link {
+    padding: 0.75rem;
+    margin: 0.125rem 0;
+    border-radius: var(--radius-small);
+    font-size: 0.9rem;
+    font-weight: var(--font-weight-medium);
+    transition: all var(--transition-fast);
+    display: block;
+    width: 100%;
+  }
+  
+  .navbar-nav .nav-link:hover,
+  .navbar-nav .nav-link.active {
+    background: rgba(230, 57, 70, 0.1);
+    color: var(--primary-red);
+  }
+  
+  .navbar-nav .nav-link::after {
+    display: none;
+  }
+  
+  ._button, ._button-2 {
+    margin: 1rem auto 0.5rem auto !important;
+    display: inline-block !important;
+    width: fit-content;
+    padding: 0.75rem 2rem !important;
+    font-size: 0.9rem !important;
+  }
+  
+  /* Footer */
+  .main-footer {
+    padding: 2rem 0 0;
+  }
+  
+  .footer-content {
+    text-align: center;
+    padding-bottom: 1.25rem;
+  }
+  
+  .footer-section {
+    margin-bottom: 1.75rem;
+  }
+  
+  .footer-section:last-child {
+    margin-bottom: 0;
+  }
+  
+  .footer-logo {
+    justify-content: center;
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .footer-logo i {
+    font-size: 1.5rem;
+  }
+  
+  .footer-description {
+    font-size: 0.9rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .footer-title {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .footer-links a {
+    font-size: 0.875rem;
+  }
+  
+  .social-links {
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+  
+  .social-link {
+    width: 36px;
+    height: 36px;
+    font-size: 0.875rem;
+  }
+  
+  .contact-info {
+    align-items: center;
+    text-align: left;
+    max-width: 280px;
+    margin: 0 auto;
+    gap: 0.875rem;
+  }
+  
+  .contact-item {
+    font-size: 0.875rem;
+    gap: 0.625rem;
+  }
+  
+  .contact-item i {
+    width: 14px;
+    font-size: 0.875rem;
+  }
+  
+  .footer-bottom {
+    text-align: center;
+    padding: 1rem 0;
+  }
+  
+  .copyright {
+    font-size: 0.825rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .footer-bottom-links {
+    justify-content: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+  }
+  
+  .footer-link {
+    font-size: 0.825rem;
+  }
+}
+
+/* ==========================================
+   VERY SMALL SCREENS (320px to 479px)
+   ========================================== */
+@media (max-width: 479.98px) {
+  :root {
+    --section-padding: 2rem 0;
+    --container-padding: 0.75rem;
+  }
+  
+  /* Typography adjustments for very small screens */
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.625rem; }
+  h3 { font-size: 1.375rem; }
+  
+  p {
+    font-size: 0.9rem;
+  }
+
+  .logo-img{
+    width: 25%;
+  }
+  
+  /* Buttons */
+  .btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    min-height: 40px;
+  }
+  
+  
+  /* Footer */
+  .footer-description {
+    font-size: 0.85rem;
+  }
+  
+  .footer-title {
+    font-size: 0.95rem;
+  }
+  
+  .contact-item {
+    font-size: 0.825rem;
+  }
+}
+
+/* ==========================================
+   LANDSCAPE MOBILE ORIENTATION
+   ========================================== */
+@media (max-height: 500px) and (orientation: landscape) {
+  :root {
+    --section-padding: 1.5rem 0;
+  }
+  
+  .navbar {
+    padding: 0.5rem 0;
+  }
+  
+  .navbar.scrolled {
+    padding: 0.25rem 0;
+  }
+  
+  .main-footer {
+    padding: 1.5rem 0 0;
+  }
+  
+  .footer-content {
+    padding-bottom: 1rem;
+  }
+  
+  .footer-section {
+    margin-bottom: 1.25rem;
+  }
+}
+
+/* ==========================================
+   HIGH DPI / RETINA DISPLAYS
+   ========================================== */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  /* Optimize for high DPI displays */
+  .footer-logo i {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .btn::before {
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  }
+}
+
+/* ==========================================
+   PRINT STYLES
+   ========================================== */
+@media print {
+  * {
+    background: white !important;
+    color: black !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+  }
+  
+  .navbar,
+  .main-footer,
+  .btn,
+  .social-links {
+    display: none !important;
+  }
+  
+  body {
+    font-size: 12pt;
+    line-height: 1.4;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+    font-weight: bold;
+  }
+  
+  p {
+    orphans: 3;
+    widows: 3;
+  }
+  
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
+}
+
+/* ==========================================
+   REDUCED MOTION PREFERENCES
+   ========================================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .animate-float {
+    animation: none;
+  }
+}
+
+/* ==========================================
+   CONTAINER QUERIES (Modern Browsers)
+   ========================================== */
+@supports (container-type: inline-size) {
+  .navbar-collapse {
+    container-type: inline-size;
+  }
+  
+  @container (max-width: 300px) {
+    .navbar-nav .nav-link {
+      font-size: 0.8rem;
+      padding: 0.5rem;
+    }
+  }
+}
