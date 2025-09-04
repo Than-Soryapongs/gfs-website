@@ -1102,6 +1102,7 @@ main .market-feature p {
 @media (max-width: 768px) {
     .market-dashboard {
         padding: 20px;
+        margin-top: 50px;
     }
     
     .market-header h4 {
