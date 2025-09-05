@@ -1,6 +1,7 @@
 :root {
   /* Brand Colors - Based on Logo */
   --primary-red: #e63946;
+  --primary-red-rgb: 230, 57, 70;
   --primary-gold: #d4922b;
   --secondary-red: #d62828;
   --secondary-gold: #f4a261;
@@ -1334,4 +1335,719 @@ main .cta-feature i {
 @keyframes chartLine {
   0% { transform: scaleX(0); }
   100% { transform: scaleX(1); }
+}
+
+/* ==========================================
+   OUR STORY PAGE SPECIFIC STYLES
+   ========================================== */
+
+/* Story Hero Section */
+.story-hero-section {
+  position: relative;
+  min-height: 75vh;
+  padding-top: 100px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--off-white) 0%, rgba(228, 57, 70, 0.08) 50%, rgba(212, 146, 43, 0.05) 100%);
+}
+
+.story-hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(228, 57, 70, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(212, 146, 43, 0.12) 0%, transparent 40%),
+    radial-gradient(circle at 40% 80%, rgba(228, 57, 70, 0.08) 0%, transparent 30%);
+  z-index: -1;
+}
+
+.story-hero-content {
+  padding: 2rem 0;
+}
+
+.story-hero-title {
+  font-size: clamp(3rem, 7vw, 5rem);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  color: var(--dark-primary);
+  text-align: center;
+}
+
+.story-hero-subtitle {
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  color: var(--gray-dark);
+  margin-bottom: 3rem;
+  line-height: 1.6;
+  text-align: center;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.story-hero-timeline {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.timeline-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-width: 120px;
+}
+
+.timeline-year {
+  font-size: 2rem;
+  font-weight: var(--font-weight-bold);
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.timeline-label {
+  font-size: 0.9rem;
+  color: var(--gray-medium);
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.timeline-divider {
+  width: 60px;
+  height: 2px;
+  background: var(--gradient-primary);
+  opacity: 0.6;
+}
+
+/* Story Content Sections */
+.story-content {
+  padding: 2rem 0;
+}
+
+.story-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(228, 57, 70, 0.1);
+  color: var(--primary-red);
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: var(--font-weight-medium);
+  margin-bottom: 1.5rem;
+}
+
+.story-section-title {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: 1.5rem;
+  color: var(--dark-primary);
+  line-height: 1.2;
+}
+
+.story-text {
+  font-size: 1.125rem;
+  color: var(--gray-dark);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.story-highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.highlight-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: var(--font-weight-medium);
+  color: var(--dark-primary);
+}
+
+.highlight-item i {
+  width: 20px;
+  color: var(--primary-red);
+  font-size: 1.1rem;
+}
+
+/* Story Visual Elements */
+.story-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  position: relative;
+  perspective: 1000px;
+}
+
+.story-image-container {
+  width: 300px;
+  height: 300px;
+  background: var(--gradient-primary);
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 20px 40px rgba(228, 57, 70, 0.3);
+}
+
+.story-floating-element {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background: var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-medium);
+  animation: float 3s ease-in-out infinite;
+}
+
+.story-floating-element i {
+  font-size: 1.5rem;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.story-element-1 {
+  top: 10%;
+  left: 20%;
+  animation-delay: 0s;
+}
+
+.story-element-2 {
+  bottom: 20%;
+  right: 10%;
+  animation-delay: 1s;
+}
+
+.story-element-3 {
+  top: 40%;
+  left: -10%;
+  animation-delay: 2s;
+}
+
+/* Mission Cards */
+.story-mission-card {
+  background: var(--white);
+  border-radius: var(--radius-large);
+  padding: 2.5rem 2rem;
+  height: 100%;
+  box-shadow: var(--shadow-light);
+  transition: all var(--transition-medium);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.story-mission-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gradient-primary);
+  transform: scaleX(0);
+  transition: var(--transition-medium);
+}
+
+.story-mission-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-dark);
+}
+
+.story-mission-card:hover::before {
+  transform: scaleX(1);
+}
+
+.mission-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(228, 57, 70, 0.1), rgba(212, 146, 43, 0.1));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  position: relative;
+}
+
+.mission-icon i {
+  font-size: 2rem;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.mission-title {
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: 1rem;
+  color: var(--dark-primary);
+}
+
+.mission-description {
+  color: var(--gray-dark);
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+/* Timeline Styles */
+.story-timeline {
+  position: relative;
+  max-width: 1000px;
+  margin: 3rem auto;
+  padding: 2rem 0;
+}
+
+.timeline-track {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--gradient-primary);
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
+.timeline-milestone {
+  position: relative;
+  margin: 3rem 0;
+  display: flex;
+  align-items: center;
+}
+
+.timeline-milestone-right {
+  flex-direction: row-reverse;
+}
+
+.milestone-year {
+  min-width: 100px;
+  height: 100px;
+  background: var(--gradient-primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--white);
+  box-shadow: 0 10px 30px rgba(228, 57, 70, 0.3);
+  z-index: 10;
+  position: relative;
+  margin: 0 2rem;
+}
+
+.milestone-content {
+  background: var(--white);
+  border-radius: var(--radius-large);
+  padding: 2rem;
+  box-shadow: var(--shadow-medium);
+  max-width: 400px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.milestone-content h4 {
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: 1rem;
+  color: var(--dark-primary);
+}
+
+.milestone-content p {
+  color: var(--gray-dark);
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+/* Leadership Quote */
+.leadership-quote-card {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  padding: 3rem 2.5rem;
+  box-shadow: var(--shadow-dark);
+  text-align: center;
+  position: relative;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.quote-icon {
+  width: 80px;
+  height: 80px;
+  background: var(--gradient-primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 2rem;
+}
+
+.quote-icon i {
+  font-size: 2rem;
+  color: var(--white);
+}
+
+.leadership-quote {
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--gray-dark);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.quote-author {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 2px solid var(--gray-light);
+}
+
+.author-name {
+  font-size: 1.25rem;
+  font-weight: var(--font-weight-semibold);
+  color: var(--dark-primary);
+  margin-bottom: 0.5rem;
+}
+
+.author-title {
+  color: var(--gray-medium);
+  font-size: 1rem;
+  font-weight: var(--font-weight-medium);
+}
+
+/* Impact Stats */
+.impact-stat {
+  background: var(--white);
+  border-radius: var(--radius-large);
+  padding: 2.5rem 2rem;
+  text-align: center;
+  box-shadow: var(--shadow-light);
+  transition: all var(--transition-medium);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.impact-stat::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gradient-primary);
+  transform: scaleX(0);
+  transition: var(--transition-medium);
+}
+
+.impact-stat:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-dark);
+}
+
+.impact-stat:hover::before {
+  transform: scaleX(1);
+}
+
+.impact-stat .stat-icon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, rgba(228, 57, 70, 0.1), rgba(212, 146, 43, 0.1));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+}
+
+.impact-stat .stat-icon i {
+  font-size: 2rem;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.impact-stat .stat-number {
+  font-size: 3rem;
+  font-weight: var(--font-weight-bold);
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.impact-stat .stat-label {
+  color: var(--gray-medium);
+  font-size: 1rem;
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Story CTA Section */
+.story-cta-section {
+  position: relative;
+  padding: 5rem 0;
+  background: var(--gradient-dark);
+  color: var(--white);
+  overflow: hidden;
+}
+
+.story-cta-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 30% 20%, rgba(228, 57, 70, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 70% 80%, rgba(212, 146, 43, 0.25) 0%, transparent 50%);
+  z-index: 1;
+}
+
+.story-cta-section .container {
+  position: relative;
+  z-index: 2;
+}
+
+.cta-title {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: 1.5rem;
+  color: var(--white);
+}
+
+.cta-subtitle {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Responsive Design for Story Page */
+@media (max-width: 1024px) {
+  .timeline-track {
+    left: 30px;
+  }
+  
+  .timeline-milestone,
+  .timeline-milestone-right {
+    flex-direction: row;
+    margin-left: 0;
+  }
+  
+  .milestone-year {
+    margin: 0 2rem 0 0;
+    min-width: 80px;
+    height: 80px;
+    font-size: 1rem;
+  }
+  
+  .milestone-content {
+    max-width: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .story-hero-timeline {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .timeline-divider {
+    width: 2px;
+    height: 40px;
+  }
+  
+  .story-highlights {
+    margin-top: 1.5rem;
+  }
+  
+  .story-floating-element {
+    display: none;
+  }
+  
+  .story-image-container {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .timeline-milestone {
+    margin: 2rem 0;
+  }
+  
+  .milestone-year {
+    min-width: 60px;
+    height: 60px;
+    font-size: 0.9rem;
+    margin-right: 1rem;
+  }
+  
+  .milestone-content {
+    padding: 1.5rem;
+  }
+  
+  .leadership-quote-card {
+    padding: 2rem 1.5rem;
+  }
+  
+  .leadership-quote {
+    font-size: 1.125rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .story-hero-section {
+    padding-top: 80px;
+  }
+  
+  .story-hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .story-hero-subtitle {
+    font-size: 1.125rem;
+  }
+  
+  .timeline-item {
+    min-width: 100px;
+  }
+  
+  .timeline-year {
+    font-size: 1.5rem;
+  }
+  
+  .story-mission-card,
+  .impact-stat {
+    padding: 2rem 1.5rem;
+  }
+  
+  .mission-icon,
+  .impact-stat .stat-icon {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .mission-icon i,
+  .impact-stat .stat-icon i {
+    font-size: 1.5rem;
+  }
+  
+  .impact-stat .stat-number {
+    font-size: 2.5rem;
+  }
+  
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .cta-buttons .btn {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+/* Additional Animations */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.timeline-milestone {
+  animation: slideInLeft 0.8s ease-out;
+}
+
+.timeline-milestone-right {
+  animation: slideInRight 0.8s ease-out;
+}
+
+/* Utility class for minimum height */
+.min-vh-75 {
+  min-height: 75vh;
+}
+
+/* Enhanced focus states for accessibility */
+.story-mission-card:focus-within,
+.impact-stat:focus-within,
+.leadership-quote-card:focus-within {
+  outline: 3px solid var(--primary-gold);
+  outline-offset: 3px;
+}
+
+/* Print styles */
+@media print {
+  .story-hero-section,
+  .story-cta-section {
+    background: var(--white) !important;
+    color: var(--dark-primary) !important;
+  }
+  
+  .story-floating-element {
+    display: none;
+  }
+  
+  .timeline-track {
+    background: var(--gray-light) !important;
+  }
+  
+  .milestone-year {
+    background: var(--gray-light) !important;
+    color: var(--dark-primary) !important;
+  }
 }

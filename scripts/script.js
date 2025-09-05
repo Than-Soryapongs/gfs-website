@@ -14,9 +14,11 @@ document.addEventListener('DOMContentLoaded', function() {
    ========================================== */
 function initNavigation() {
     const navbar = document.querySelector('.navbar');
-    const navLinks = document.querySelectorAll('.nav-link');
     let lastScrollTop = 0;
     let scrollTimeout;
+
+    // Set active link based on current page
+    setActivePage();
 
     // Navbar scroll effects
     function handleNavbarScroll() {
@@ -40,26 +42,163 @@ function initNavigation() {
         scrollTimeout = setTimeout(handleNavbarScroll, 10);
     });
 
-    // Active link highlighting based on scroll position
+    // For single-page sections (like home page), still maintain section-based active links
+    if (isHomePage()) {
+        initSectionBasedNavigation();
+    }
+}
+
+/* ==========================================
+   PAGE-BASED ACTIVE LINK FUNCTIONALITY
+   ========================================== */
+function setActivePage() {
+    const navLinks = document.querySelectorAll('.nav-link');
+    const dropdownItems = document.querySelectorAll('.dropdown-item');
+    const currentPath = window.location.pathname;
+    
+    // Remove all active classes first
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+    });
+    dropdownItems.forEach(item => {
+        item.classList.remove('active');
+    });
+
+    // Define page mapping with more comprehensive matching
+    const pageMapping = {
+        '/': 'home',
+        '/index.html': 'home',
+        '/pages/our-story.html': 'about',
+        '/pages/mission-vision.html': 'about', 
+        '/pages/careers.html': 'about',
+        '/pages/account-opening.html': 'services',
+        '/pages/fund-management.html': 'services',
+        '/pages/consulting.html': 'services',
+        '/pages/technical-support.html': 'services',
+        '/pages/market-summary.html': 'market-overview',
+        '/pages/daily-prices.html': 'market-overview',
+        '/pages/csx-index.html': 'market-overview',
+        '/pages/trading-calendar.html': 'market-overview',
+        '/pages/companies-list.html': 'market-overview',
+        '/pages/trading.html': 'market-overview',
+        '/pages/csx-trade.html': 'trading-platform',
+        '/pages/contact.html': 'contact'
+    };
+
+    const activeSection = pageMapping[currentPath];
+
+    if (activeSection) {
+        // Find main nav link with matching data-page
+        const mainNavLink = document.querySelector(`.nav-link[data-page="${activeSection}"]`);
+        if (mainNavLink) {
+            mainNavLink.classList.add('active');
+        }
+
+        // Find specific dropdown item for exact page
+        const exactPageName = getPageNameFromPath(currentPath);
+        const dropdownItem = document.querySelector(`.dropdown-item[data-page="${exactPageName}"]`);
+        if (dropdownItem) {
+            dropdownItem.classList.add('active');
+        }
+    }
+
+    const exactMatch = document.querySelector(`a[href="${currentPath}"]`);
+    if (exactMatch) {
+        exactMatch.classList.add('active');
+        
+        // If it's a dropdown item, also highlight parent dropdown
+        const parentDropdown = exactMatch.closest('.dropdown');
+        if (parentDropdown) {
+            const dropdownToggle = parentDropdown.querySelector('.dropdown-toggle');
+            if (dropdownToggle && !dropdownToggle.classList.contains('active')) {
+                dropdownToggle.classList.add('active');
+            }
+        }
+    }
+
+    // Method 3: Handle special cases and relative paths
+    handleSpecialCases(currentPath);
+}
+
+function getPageNameFromPath(path) {
+    if (path === '/' || path === '/index.html') return 'home';
+    const filename = path.split('/').pop();
+    return filename ? filename.replace('.html', '') : 'home';
+}
+
+function handleSpecialCases(currentPath) {
+    // Handle home page variants
+    if (currentPath === '/' || currentPath === '/index.html' || currentPath === '') {
+        const homeLink = document.querySelector('.nav-link[data-page="home"]') || 
+                        document.querySelector('a[href="/"]') || 
+                        document.querySelector('a[href="/index.html"]');
+        if (homeLink && !homeLink.classList.contains('active')) {
+            homeLink.classList.add('active');
+        }
+    }
+
+    // Handle contact page with quote section
+    if (currentPath.includes('/pages/contact.html')) {
+        const contactLink = document.querySelector('.nav-link[data-page="contact"]');
+        const quoteButton = document.querySelector('[data-page="quote"]');
+        
+        if (contactLink) contactLink.classList.add('active');
+        
+        // If URL has #quote, also highlight the quote button
+        if (window.location.hash === '#quote' && quoteButton) {
+            quoteButton.classList.add('active');
+        }
+    }
+}
+
+function getCurrentPageIdentifier() {
+    const path = window.location.pathname;
+    const filename = path.split('/').pop() || 'index.html';
+    return filename.replace('.html', '');
+}
+
+function isHomePage() {
+    const path = window.location.pathname;
+    return path === '/' || path === '/index.html' || path.endsWith('/') || path === '';
+}
+
+/* ==========================================
+   SECTION-BASED NAVIGATION (for single-page areas)
+   ========================================== */
+function initSectionBasedNavigation() {
+    // Active link highlighting based on scroll position (for home page)
     function updateActiveLink() {
         const sections = document.querySelectorAll('section[id]');
         const scrollPos = window.scrollY + 100;
+        let currentSection = '';
 
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
             const sectionHeight = section.offsetHeight;
             const sectionId = section.getAttribute('id');
-            const correspondingLink = document.querySelector(`a[href="#${sectionId}"]`);
 
             if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-                // Remove active class from all links
-                navLinks.forEach(link => link.classList.remove('active'));
-                // Add active class to current link
-                if (correspondingLink) {
-                    correspondingLink.classList.add('active');
-                }
+                currentSection = sectionId;
             }
         });
+
+        // Update nav links based on current section
+        if (currentSection) {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const correspondingLink = document.querySelector(`a[href="#${currentSection}"]`);
+
+            // Remove active from all nav links
+            navLinks.forEach(link => {
+                if (link.getAttribute('href')?.startsWith('#')) {
+                    link.classList.remove('active');
+                }
+            });
+
+            // Add active to current section link
+            if (correspondingLink && correspondingLink.classList.contains('nav-link')) {
+                correspondingLink.classList.add('active');
+            }
+        }
     }
 
     // Throttled scroll event for active link updates
@@ -78,20 +217,20 @@ function initNavigation() {
 function initMobileMenu() {
     const toggler = document.querySelector('.navbar-toggler');
     const navbarCollapse = document.querySelector('.navbar-collapse');
-    const navLinks = document.querySelectorAll('.navbar-nav .nav-link:not(.dropdown-toggle)'); // Exclude dropdown toggles
+    const navLinks = document.querySelectorAll('.navbar-nav .nav-link:not(.dropdown-toggle)');
     const body = document.body;
 
-    // Close mobile menu when clicking on regular nav links (not dropdowns)
+    // Close mobile menu when clicking on regular nav links
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            // Don't close menu if it's a dropdown item that opens a submenu
             if (!link.closest('.dropdown-submenu') && window.innerWidth < 992) {
+                // Allow navigation to complete before closing menu
                 setTimeout(() => {
                     const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse) || 
                                      new bootstrap.Collapse(navbarCollapse);
                     bsCollapse.hide();
                     body.classList.remove('mobile-menu-open');
-                }, 150); // Small delay to allow dropdown selection
+                }, 150);
             }
         });
     });
@@ -124,7 +263,7 @@ function initMobileMenu() {
         });
     }
 
-    // Listen for Bootstrap collapse events instead of click detection
+    // Listen for Bootstrap collapse events
     if (navbarCollapse) {
         navbarCollapse.addEventListener('shown.bs.collapse', function() {
             body.classList.add('mobile-menu-open');
@@ -132,14 +271,13 @@ function initMobileMenu() {
         
         navbarCollapse.addEventListener('hidden.bs.collapse', function() {
             body.classList.remove('mobile-menu-open');
-            // Close any open submenus
             document.querySelectorAll('.dropdown-submenu.show').forEach(submenu => {
                 submenu.classList.remove('show');
             });
         });
     }
 
-    // Improved outside click handling
+    // Outside click handling
     document.addEventListener('click', function(event) {
         const navbar = document.querySelector('.navbar');
         const isClickInsideNavbar = navbar && navbar.contains(event.target);
@@ -155,12 +293,10 @@ function initMobileMenu() {
     window.addEventListener('resize', function() {
         if (window.innerWidth >= 992) {
             body.classList.remove('mobile-menu-open');
-            // Close any open submenus
             document.querySelectorAll('.dropdown-submenu.show').forEach(submenu => {
                 submenu.classList.remove('show');
             });
             
-            // Hide mobile menu if open
             if (navbarCollapse.classList.contains('show')) {
                 const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse) || 
                                  new bootstrap.Collapse(navbarCollapse);
@@ -174,15 +310,14 @@ function initMobileMenu() {
    SMOOTH SCROLLING
    ========================================== */
 function initSmoothScrolling() {
-    // Smooth scrolling for anchor links
+    // Smooth scrolling for anchor links (same page)
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            
             const targetId = this.getAttribute('href');
             const targetSection = document.querySelector(targetId);
             
             if (targetSection) {
+                e.preventDefault();
                 const headerHeight = document.querySelector('.navbar').offsetHeight;
                 const targetPosition = targetSection.offsetTop - headerHeight - 20;
                 
@@ -191,7 +326,41 @@ function initSmoothScrolling() {
                     behavior: 'smooth'
                 });
             }
+            // If target doesn't exist on current page, allow normal navigation
         });
+    });
+
+    // Handle external page links with hash fragments
+    document.querySelectorAll('a[href*="#"]:not([href^="#"])').forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            const [page, hash] = href.split('#');
+            
+            // If linking to a different page with hash, store the hash for after navigation
+            if (hash && page !== window.location.pathname) {
+                sessionStorage.setItem('scrollToSection', hash);
+            }
+        });
+    });
+
+    // Check for stored hash on page load
+    window.addEventListener('load', function() {
+        const scrollToSection = sessionStorage.getItem('scrollToSection');
+        if (scrollToSection) {
+            sessionStorage.removeItem('scrollToSection');
+            setTimeout(() => {
+                const targetSection = document.querySelector(`#${scrollToSection}`);
+                if (targetSection) {
+                    const headerHeight = document.querySelector('.navbar').offsetHeight;
+                    const targetPosition = targetSection.offsetTop - headerHeight - 20;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            }, 500); // Delay to ensure page is fully rendered
+        }
     });
 }
 
@@ -256,6 +425,9 @@ function initPageTransitions() {
     window.addEventListener('load', function() {
         document.body.classList.add('loaded');
         
+        // Re-run active page setting after load to ensure it works
+        setTimeout(setActivePage, 100);
+        
         // Initialize any page-specific animations
         const pageTransitionElements = document.querySelectorAll('.page-transition');
         pageTransitionElements.forEach((element, index) => {
@@ -263,6 +435,23 @@ function initPageTransitions() {
                 element.classList.add('loaded');
             }, index * 100);
         });
+    });
+
+    document.addEventListener('click', function(e) {
+        const link = e.target.closest('a[href]');
+        if (link && !link.hasAttribute('target') && !link.href.includes('#') && 
+            link.hostname === window.location.hostname) {
+            
+            const href = link.getAttribute('href');
+            if (href && href !== window.location.pathname) {
+                // Add exit animation class
+                document.body.classList.add('page-exit');                
+                e.preventDefault();
+                setTimeout(() => {
+                    window.location.href = href;
+                }, 300);
+            }
+        }
     });
 }
 
@@ -290,7 +479,7 @@ function initAccessibility() {
         });
     }
 
-    // Enhanced focus management for mobile menu
+    // Enhanced focus management
     navLinks.forEach((link, index) => {
         link.addEventListener('keydown', function(e) {
             if (e.key === 'ArrowDown') {
@@ -378,13 +567,12 @@ function scrollToElement(element, offset = 0) {
 }
 
 /* ==========================================
-   FORM ENHANCEMENTS (for future contact forms)
+   FORM ENHANCEMENTS
    ========================================== */
 function initFormEnhancements() {
     const forms = document.querySelectorAll('form');
     
     forms.forEach(form => {
-        // Add form validation classes
         form.addEventListener('submit', function(e) {
             if (!form.checkValidity()) {
                 e.preventDefault();
@@ -393,7 +581,6 @@ function initFormEnhancements() {
             form.classList.add('was-validated');
         });
 
-        // Real-time validation for inputs
         const inputs = form.querySelectorAll('input, textarea, select');
         inputs.forEach(input => {
             input.addEventListener('blur', function() {
@@ -413,7 +600,6 @@ function initFormEnhancements() {
    LOADING ANIMATION
    ========================================== */
 function initLoadingAnimation() {
-    // Create loading spinner
     const loader = document.createElement('div');
     loader.className = 'page-loader';
     loader.innerHTML = `
@@ -424,7 +610,6 @@ function initLoadingAnimation() {
         </div>
     `;
     
-    // Add loader styles
     const loaderStyles = `
         .page-loader {
             position: fixed;
@@ -453,15 +638,11 @@ function initLoadingAnimation() {
         }
     `;
     
-    // Add styles to head
     const style = document.createElement('style');
     style.textContent = loaderStyles;
     document.head.appendChild(style);
-    
-    // Add loader to body
     document.body.appendChild(loader);
     
-    // Hide loader when page is fully loaded
     window.addEventListener('load', function() {
         setTimeout(() => {
             loader.classList.add('hidden');

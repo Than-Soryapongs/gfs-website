@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <div class="container">
             <!-- Brand/Logo -->
-            <a class="navbar-brand" href="#home" data-aos="fade-right">
+            <a class="navbar-brand" href="/" data-aos="fade-right">
                 <img src="/public/logos/gfs-icon.png" 
                  class="logo-img" 
                  alt="GFS Logo">
@@ -21,108 +21,137 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#home">
+                        <a class="nav-link" href="/" data-page="home">
                             <i class="fas fa-home"></i> Home
                         </a>
+                    </li>
+
+                    <!-- About Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="aboutDropdown" role="button" 
+                            data-bs-toggle="dropdown" aria-expanded="false" data-page="about">
+                            <i class="fas fa-info-circle"></i> About
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
+                            <li>
+                                <a class="dropdown-item" href="/pages/our-story.html" data-page="our-story">
+                                    <i class="fas fa-book"></i> Our Story
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/pages/mission-vision.html" data-page="mission-vision">
+                                    <i class="fas fa-bullseye"></i> Mission & Vision
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/pages/careers.html" data-page="careers">
+                                    <i class="fas fa-briefcase"></i> Careers
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                     
                     <!-- Services Dropdown -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="servicesDropdown" role="button" 
-                            data-bs-toggle="dropdown" aria-expanded="false">
+                            data-bs-toggle="dropdown" aria-expanded="false" data-page="services">
                             <i class="fas fa-cogs"></i> Services
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
-                            <li><a class="dropdown-item" href="#web-design">
-                                <i class="fas fa-palette"></i> Web Design
-                            </a></li>
-                            <li><a class="dropdown-item" href="#web-development">
-                                <i class="fas fa-code"></i> Web Development
-                            </a></li>
+                            <li>
+                                <a class="dropdown-item" href="/pages/account-opening.html" data-page="account-opening">
+                                    <i class="fa-solid fa-id-card-clip"></i> Account Opening
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/pages/fund-management.html" data-page="fund-management">
+                                    <i class="fa-solid fa-money-bill-transfer"></i> Fund Deposit & Withdrawal
+                                </a>
+                            </li>                        
                             
-                            <!-- Submenu Example -->
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <a class="dropdown-item" href="/pages/consulting.html" data-page="consulting">
+                                    <i class="fas fa-user-tie"></i> Consulting
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/pages/technical-support.html" data-page="technical-support">
+                                    <i class="fas fa-headset"></i> Technical Support
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- Market Overview Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="marketDropdown" role="button" 
+                            data-bs-toggle="dropdown" aria-expanded="false" data-page="market-overview">
+                            <i class="fas fa-chart-line"></i> Market Overview
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="marketDropdown">                           
+                            
                             <li class="dropdown-submenu">
-                                <a class="dropdown-item" href="#digital-marketing">
-                                    <i class="fas fa-bullhorn"></i> Digital Marketing
+                                <a class="dropdown-item" href="/pages/market-summary.html" data-page="market-summary">
+                                    <i class="fas fa-bullhorn"></i> Daily Market Summary
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#seo">
-                                        <i class="fas fa-search"></i> SEO Services
-                                    </a></li>
-                                    <li><a class="dropdown-item" href="#social-media">
-                                        <i class="fab fa-facebook"></i> Social Media
-                                    </a></li>
-                                    <li><a class="dropdown-item" href="#ppc">
-                                        <i class="fas fa-ad"></i> PPC Advertising
-                                    </a></li>
-                                    <li><a class="dropdown-item" href="#email-marketing">
-                                        <i class="fas fa-envelope"></i> Email Marketing
-                                    </a></li>
+                                    <li>
+                                        <a class="dropdown-item" href="/pages/daily-prices.html" data-page="daily-prices">
+                                            <i class="fa-solid fa-money-bill-wave"></i> Daily Market Price
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="/pages/csx-index.html" data-page="csx-index">
+                                            <i class="fa-solid fa-chart-simple"></i> CSX Index
+                                        </a>
+                                    </li>
                                 </ul>
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item" href="/pages/trading-calendar.html" data-page="trading-calendar">
+                                    <i class="fa-solid fa-calendar"></i> Trading Calendar
+                                </a>
                             </li>
                             
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#consulting">
-                                <i class="fas fa-user-tie"></i> Consulting
-                            </a></li>
-                            <li><a class="dropdown-item" href="#support">
-                                <i class="fas fa-headset"></i> Technical Support
-                            </a></li>
+                            <li>
+                                <a class="dropdown-item" href="/pages/companies-list.html" data-page="companies-list">
+                                    <i class="fa-solid fa-building"></i> List of Companies
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/pages/trading.html" data-page="trading">
+                                    <i class="fa-solid fa-money-bill-trend-up"></i> Trading
+                                </a>
+                            </li>
                         </ul>
                     </li>
 
-                    <!-- About Dropdown -->
+                    <!-- Trading Platform Dropdown -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="aboutDropdown" role="button" 
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-info-circle"></i> About
+                        <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="platformDropdown" role="button" 
+                            data-bs-toggle="dropdown" aria-expanded="false" data-page="trading-platform">
+                            <i class="fa-solid fa-grip"></i> Trading Platform
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
-                            <li><a class="dropdown-item" href="#our-story">
-                                <i class="fas fa-book"></i> Our Story
-                            </a></li>
-                            <li><a class="dropdown-item" href="#team">
-                                <i class="fas fa-users"></i> Our Team
-                            </a></li>
-                            <li><a class="dropdown-item" href="#mission">
-                                <i class="fas fa-bullseye"></i> Mission & Vision
-                            </a></li>
-                            <li><a class="dropdown-item" href="#careers">
-                                <i class="fas fa-briefcase"></i> Careers
-                            </a></li>
+                        <ul class="dropdown-menu" aria-labelledby="platformDropdown">
+                            <li>
+                                <a class="dropdown-item" href="/pages/csx-trade.html" data-page="csx-trade">
+                                    <i class="fa-solid fa-mobile"></i> CSX Trade
+                                </a>
+                            </li>                            
                         </ul>
-                    </li>
-
-                    <!-- Portfolio Dropdown -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="portfolioDropdown" role="button" 
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-folder-open"></i> Portfolio
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="portfolioDropdown">
-                            <li><a class="dropdown-item" href="#web-projects">
-                                <i class="fas fa-desktop"></i> Web Projects
-                            </a></li>
-                            <li><a class="dropdown-item" href="#mobile-apps">
-                                <i class="fas fa-mobile-alt"></i> Mobile Apps
-                            </a></li>
-                            <li><a class="dropdown-item" href="#branding">
-                                <i class="fas fa-paint-brush"></i> Branding
-                            </a></li>
-                            <li><a class="dropdown-item" href="#case-studies">
-                                <i class="fas fa-chart-line"></i> Case Studies
-                            </a></li>
-                        </ul>
-                    </li>
-
+                    </li>                    
+                    
                     <li class="nav-item">
-                        <a class="nav-link" href="#contact">
+                        <a class="nav-link" href="/pages/contact.html" data-page="contact">
                             <i class="fas fa-envelope"></i> Contact
                         </a>
                     </li>
                     
                     <li class="nav-item">
-                        <a class="btn _button" href="#contact">
+                        <a class="btn _button" href="/pages/contact.html#quote" data-page="quote">
                             <i class="fas fa-quote-right"></i> Get Quote
                         </a>
                     </li>
