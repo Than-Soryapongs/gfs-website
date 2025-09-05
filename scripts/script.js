@@ -1,7 +1,3 @@
-/* ==========================================
-   SCRIPT.JS - MODERNWEB INTERACTIVE FUNCTIONALITY
-   ========================================== */
-
 // DOM Content Loaded Event
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize all functionality
@@ -82,20 +78,35 @@ function initNavigation() {
 function initMobileMenu() {
     const toggler = document.querySelector('.navbar-toggler');
     const navbarCollapse = document.querySelector('.navbar-collapse');
-    const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+    const navLinks = document.querySelectorAll('.navbar-nav .nav-link:not(.dropdown-toggle)'); // Exclude dropdown toggles
     const body = document.body;
 
-    // Close mobile menu when clicking on nav links
+    // Close mobile menu when clicking on regular nav links (not dropdowns)
     navLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            if (window.innerWidth < 992) {
-                // Close the mobile menu
-                const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
-                    hide: true
-                });
-                
-                // Remove mobile menu open class
-                body.classList.remove('mobile-menu-open');
+        link.addEventListener('click', function(e) {
+            // Don't close menu if it's a dropdown item that opens a submenu
+            if (!link.closest('.dropdown-submenu') && window.innerWidth < 992) {
+                setTimeout(() => {
+                    const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse) || 
+                                     new bootstrap.Collapse(navbarCollapse);
+                    bsCollapse.hide();
+                    body.classList.remove('mobile-menu-open');
+                }, 150); // Small delay to allow dropdown selection
+            }
+        });
+    });
+
+    // Handle dropdown items separately
+    const dropdownItems = document.querySelectorAll('.dropdown-item:not(.dropdown-submenu .dropdown-item)');
+    dropdownItems.forEach(item => {
+        item.addEventListener('click', function() {
+            if (window.innerWidth < 992 && !item.closest('.dropdown-submenu')) {
+                setTimeout(() => {
+                    const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse) || 
+                                     new bootstrap.Collapse(navbarCollapse);
+                    bsCollapse.hide();
+                    body.classList.remove('mobile-menu-open');
+                }, 200);
             }
         });
     });
@@ -113,16 +124,30 @@ function initMobileMenu() {
         });
     }
 
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', function(event) {
-        const isClickInsideNav = navbarCollapse.contains(event.target) || 
-                                 toggler.contains(event.target);
+    // Listen for Bootstrap collapse events instead of click detection
+    if (navbarCollapse) {
+        navbarCollapse.addEventListener('shown.bs.collapse', function() {
+            body.classList.add('mobile-menu-open');
+        });
         
-        if (!isClickInsideNav && navbarCollapse.classList.contains('show')) {
-            const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
-                hide: true
-            });
+        navbarCollapse.addEventListener('hidden.bs.collapse', function() {
             body.classList.remove('mobile-menu-open');
+            // Close any open submenus
+            document.querySelectorAll('.dropdown-submenu.show').forEach(submenu => {
+                submenu.classList.remove('show');
+            });
+        });
+    }
+
+    // Improved outside click handling
+    document.addEventListener('click', function(event) {
+        const navbar = document.querySelector('.navbar');
+        const isClickInsideNavbar = navbar && navbar.contains(event.target);
+        
+        if (!isClickInsideNavbar && navbarCollapse.classList.contains('show') && window.innerWidth < 992) {
+            const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse) || 
+                             new bootstrap.Collapse(navbarCollapse);
+            bsCollapse.hide();
         }
     });
 
@@ -130,6 +155,17 @@ function initMobileMenu() {
     window.addEventListener('resize', function() {
         if (window.innerWidth >= 992) {
             body.classList.remove('mobile-menu-open');
+            // Close any open submenus
+            document.querySelectorAll('.dropdown-submenu.show').forEach(submenu => {
+                submenu.classList.remove('show');
+            });
+            
+            // Hide mobile menu if open
+            if (navbarCollapse.classList.contains('show')) {
+                const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse) || 
+                                 new bootstrap.Collapse(navbarCollapse);
+                bsCollapse.hide();
+            }
         }
     });
 }
@@ -435,29 +471,3 @@ function initLoadingAnimation() {
         }, 500);
     });
 }
-
-/* ==========================================
-   INITIALIZE ON WINDOW LOAD
-   ========================================== */
-window.addEventListener('load', function() {
-    // Initialize additional features that need full page load
-    initFormEnhancements();
-    
-    // Performance optimization - lazy load images
-    if ('IntersectionObserver' in window) {
-        const imageObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.src = img.dataset.src;
-                    img.classList.remove('lazy');
-                    imageObserver.unobserve(img);
-                }
-            });
-        });
-
-        document.querySelectorAll('img[data-src]').forEach(img => {
-            imageObserver.observe(img);
-        });
-    }
-});
