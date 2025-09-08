@@ -2,7 +2,6 @@ class MarketDashboard {
     constructor() {
         this.apiUrl = 'https://data.mef.gov.kh/api/v1/realtime-api/csx-summary';
         this.container = document.querySelector('.market-indices');
-        this.statusElement = document.querySelector('.market-status');
         this.lastUpdateTime = null;
         this.currentData = null;
         this.refreshInterval = null;
@@ -46,7 +45,6 @@ class MarketDashboard {
             this.lastUpdateTime = newTimestamp;
             this.currentData = data;
             this.renderDashboard(data);
-            this.updateMarketStatus();
             
         } catch (error) {
             console.error('Failed to fetch market data:', error);
@@ -124,27 +122,6 @@ class MarketDashboard {
         }
 
         this.container.innerHTML = html;
-    }
-
-    updateMarketStatus() {
-        if (!this.statusElement) return;
-        
-        const now = new Date();
-        const currentHour = now.getHours();
-        const currentMinute = now.getMinutes();
-        const currentTime = currentHour * 100 + currentMinute;
-        
-        // CSX trading hours: 9:00 AM - 11:30 AM (morning), 2:00 PM - 3:30 PM (afternoon)
-        const isMarketOpen = (currentTime >= 900 && currentTime <= 1130) || 
-                            (currentTime >= 1400 && currentTime <= 1530);
-        
-        if (isMarketOpen) {
-            this.statusElement.textContent = 'Markets Open';
-            this.statusElement.className = 'market-status positive';
-        } else {
-            this.statusElement.textContent = 'Markets Closed';
-            this.statusElement.className = 'market-status negative';
-        }
     }
 
     showLoading() {
