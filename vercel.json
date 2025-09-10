@@ -6,6 +6,6 @@
     { "src": "pages/**/*", "use": "@vercel/static" },
     { "src": "templates/**/*", "use": "@vercel/static" },
     { "src": "public/**/*", "use": "@vercel/static" },
-    { "src": "/", "use": "@vercel/static" }
+    { "src": "/*", "use": "@vercel/static" }
   ]
 }
