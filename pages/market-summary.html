@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market Summary | Golden Fortune (Cambodia) Securities Plc (GFS)</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- AOS Animation CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link href="../css/custom.css" rel="stylesheet">
+    <link href="../css/responsive.css" rel="stylesheet">
+    <link href="../css/market-summary.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <div id="header-placeholder"></div>
+
+    <main>
+        <!-- Market Index Section -->
+        <section class="market-index-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="market-index-card" data-aos="fade-up">
+                            <div class="index-header">
+                                <h2 class="index-title">CSX Index</h2>
+                                <div class="index-time" id="index-time">Loading...</div>
+                            </div>
+                            <div class="index-content">
+                                <div class="index-value-section">
+                                    <div class="index-value" id="index-value">-</div>
+                                    <div class="index-change" id="index-change">
+                                        <span class="change-value">-</span>
+                                        <span class="change-percent">-</span>
+                                    </div>
+                                </div>
+                                <div class="index-stats">
+                                    <div class="stat-item">
+                                        <span class="stat-label">Open</span>
+                                        <span class="stat-value" id="index-open"></span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">High</span>
+                                        <span class="stat-value" id="index-high"></span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Low</span>
+                                        <span class="stat-value" id="index-low"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stock Table Section -->
+        <section class="stock-table-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-header" data-aos="fade-up">
+                            <h2 class="section-title text-gradient">Live Stock Prices</h2>
+                            <div class="refresh-controls">
+                                <button class="refresh-btn" id="refresh-btn">
+                                    <i class="fas fa-sync-alt"></i>
+                                    Refresh
+                                </button>
+                                <div class="last-update">
+                                    Last updated: <span id="last-update-time">-</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="stock-table-container" data-aos="fade-up" data-aos-delay="200">
+                            <div class="table-responsive">
+                                <table class="stock-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Symbol</th>
+                                            <th>Company</th>
+                                            <th>Price</th>
+                                            <th>Change</th>
+                                            <th>Volume</th>
+                                            <th>Value</th>
+                                            <th>P/E</th>
+                                            <th>P/B</th>
+                                            <th>High</th>
+                                            <th>Low</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="stock-table-body">
+                                        <tr class="loading-row">
+                                            <td colspan="10">
+                                                <div class="loading-spinner">
+                                                    <i class="fas fa-spinner fa-spin"></i>
+                                                    Loading market data...
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Market Statistics -->
+                        <div class="market-stats" data-aos="fade-up" data-aos-delay="400">
+                            <div class="row">
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="stat-card">
+                                        <div class="stat-icon up">
+                                            <i class="fas fa-arrow-up"></i>
+                                        </div>
+                                        <div class="stat-info">
+                                            <div class="stat-number" id="gainers-count">-</div>
+                                            <div class="stat-text">Gainers</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="stat-card">
+                                        <div class="stat-icon down">
+                                            <i class="fas fa-arrow-down"></i>
+                                        </div>
+                                        <div class="stat-info">
+                                            <div class="stat-number" id="losers-count">-</div>
+                                            <div class="stat-text">Decliners</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="stat-card">
+                                        <div class="stat-icon equal">
+                                            <i class="fas fa-minus"></i>
+                                        </div>
+                                        <div class="stat-info">
+                                            <div class="stat-number" id="unchanged-count">-</div>
+                                            <div class="stat-text">Unchanged</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="stat-card">
+                                        <div class="stat-icon">
+                                            <i class="fas fa-chart-line"></i>
+                                        </div>
+                                        <div class="stat-info">
+                                            <div class="stat-number" id="total-stocks">-</div>
+                                            <div class="stat-text">Total Stocks</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="../scripts/script.js"></script>
+    <script src="../scripts/market-summary.js"></script>
+    
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });        
+
+        // Load header and footer
+        fetch('../templates/header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+                initMobileMenu();
+            });
+
+        fetch('../templates/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            });
+
+        // Initialize market data when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof MarketSummary !== 'undefined') {
+                MarketSummary.init();
+            }
+        });
+
+        // Market Summary JavaScript
+        const MarketSummary = {
+            // API endpoints
+            summaryApi: 'https://data.mef.gov.kh/api/v1/realtime-api/csx-summary',
+            indexApi: 'https://data.mef.gov.kh/api/v1/realtime-api/csx-index',
+            
+            // Data storage
+            stocksData: [],
+            indexData: null,
+            lastUpdateTime: null,
+            
+            // Initialize the module
+            init() {
+                this.setupEventListeners();
+                this.loadData();
+                this.startAutoRefresh();
+            },
+            
+            // Setup event listeners
+            setupEventListeners() {
+                const refreshBtn = document.getElementById('refresh-btn');
+                if (refreshBtn) {
+                    refreshBtn.addEventListener('click', () => {
+                        this.loadData();
+                    });
+                }
+            },
+            
+            // Load data from APIs
+            async loadData() {
+                this.setLoadingState(true);
+                
+                try {
+                    // Load both APIs in parallel
+                    const [stocksResponse, indexResponse] = await Promise.all([
+                        this.fetchWithTimeout(this.summaryApi),
+                        this.fetchWithTimeout(this.indexApi)
+                    ]);
+                    
+                    // Process stocks data
+                    if (stocksResponse.ok) {
+                        const stocksData = await stocksResponse.json();
+                        this.stocksData = stocksData.data || [];
+                        this.renderStocksTable();
+                        this.updateMarketStats();
+                    } else {
+                        throw new Error('Failed to fetch stocks data');
+                    }
+                    
+                    // Process index data
+                    if (indexResponse.ok) {
+                        const indexData = await indexResponse.json();
+                        this.indexData = indexData.data || null;
+                        this.renderIndexCard();
+                    } else {
+                        console.warn('Failed to fetch index data');
+                    }
+                    
+                    this.lastUpdateTime = new Date();
+                    this.updateLastUpdateTime();
+                    
+                } catch (error) {
+                    console.error('Error loading market data:', error);
+                    this.showError('Failed to load market data. Please try again.');
+                } finally {
+                    this.setLoadingState(false);
+                }
+            },
+            
+            // Fetch with timeout
+            async fetchWithTimeout(url, timeout = 10000) {
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), timeout);
+                
+                try {
+                    const response = await fetch(url, {
+                        signal: controller.signal,
+                        headers: {
+                            'Accept': 'application/json',
+                        }
+                    });
+                    clearTimeout(timeoutId);
+                    return response;
+                } catch (error) {
+                    clearTimeout(timeoutId);
+                    throw error;
+                }
+            },
+            
+            // Set loading state
+            setLoadingState(isLoading) {
+                const refreshBtn = document.getElementById('refresh-btn');
+                if (refreshBtn) {
+                    if (isLoading) {
+                        refreshBtn.classList.add('loading');
+                        refreshBtn.disabled = true;
+                    } else {
+                        refreshBtn.classList.remove('loading');
+                        refreshBtn.disabled = false;
+                    }
+                }
+            },
+            
+            // Render index card
+            renderIndexCard() {
+                if (!this.indexData) return;
+                
+                const data = this.indexData;
+                
+                // Update index value
+                const indexValue = document.getElementById('index-value');
+                if (indexValue) {
+                    indexValue.textContent = this.formatNumber(data.value, 2);
+                }
+                
+                // Update index change
+                const indexChange = document.getElementById('index-change');
+                if (indexChange) {
+                    const changeValue = data.change || 0;
+                    const changePercent = data.change_percent || 0;
+                    const changeDirection = data.change_up_down || 'equal';
+                    
+                    indexChange.className = `index-change ${changeDirection}`;
+                    indexChange.innerHTML = `
+                        <span class="change-value">${changeValue >= 0 ? '+' : ''}${this.formatNumber(changeValue, 2)}</span>
+                        <span class="change-percent">${changePercent >= 0 ? '+' : ''}${this.formatNumber(changePercent, 2)}%</span>
+                    `;
+                }
+                
+                // Update stats
+                const indexOpen = document.getElementById('index-open');
+                if (indexOpen) {
+                    indexOpen.textContent = this.formatNumber(data.opening, 2);
+                }
+                const indexHigh = document.getElementById('index-high');
+                if (indexHigh) {
+                    indexHigh.textContent = this.formatNumber(data.high, 2);
+                }
+                const indexLow = document.getElementById('index-low');
+                if (indexLow) {
+                    indexLow.textContent = this.formatNumber(data.low, 2);
+                }                
+                
+                // Update index time
+                const indexTime = document.getElementById('index-time');
+                if (indexTime && data.index_time) {
+                    // Combine the date and time into one string so JS can parse it
+                    const dateTimeStr = `${data.date} ${data.index_time}`;
+                    const dateObj = new Date(dateTimeStr);
+
+                    // Format with AM/PM
+                    const formatted = dateObj.toLocaleString('en-US', {
+                        hour: 'numeric',
+                        minute: '2-digit',
+                        second: '2-digit',
+                        hour12: true
+                    });
+
+                    indexTime.textContent = `Last updated: ${formatted}`;
+                }
+
+            },
+            
+            // Render stocks table
+            renderStocksTable() {
+                const tableBody = document.getElementById('stock-table-body');
+                if (!tableBody || !this.stocksData.length) return;
+                
+                const rows = this.stocksData.map(stock => this.createStockRow(stock)).join('');
+                tableBody.innerHTML = rows;
+            },
+            
+            // Create stock row HTML
+            createStockRow(stock) {
+                const changeDirection = stock.change_up_down || 'equal';
+                const change = parseFloat(stock.change) || 0;
+                
+                return `
+                    <tr>
+                        <td class="stock-symbol">${stock.stock || '-'}</td>
+                        <td class="stock-name">${stock.name || '-'}</td>
+                        <td class="stock-price">${this.formatCurrency(stock.close)}</td>
+                        <td class="stock-change ${changeDirection}">${this.formatNumber(change)}</td>
+                        <td class="stock-volume">${this.formatVolume(stock.volume)}</td>
+                        <td class="stock-value">${this.formatCurrency(stock.value)}</td>
+                        <td>${this.formatPE(stock.pe)}</td>
+                        <td>${this.formatPB(stock.pb)}</td>
+                        <td>${this.formatCurrency(stock.high)}</td>
+                        <td>${this.formatCurrency(stock.low)}</td>
+                    </tr>
+                `;
+            },
+            
+            // Update market statistics
+            updateMarketStats() {
+                if (!this.stocksData.length) return;
+                
+                const stats = this.stocksData.reduce((acc, stock) => {
+                    const change = parseFloat(stock.change) || 0;
+                    const direction = stock.change_up_down || 'equal';
+                    
+                    if (direction === 'up' || change > 0) {
+                        acc.gainers++;
+                    } else if (direction === 'down' || change < 0) {
+                        acc.losers++;
+                    } else {
+                        acc.unchanged++;
+                    }
+                    acc.total++;
+                    
+                    return acc;
+                }, { gainers: 0, losers: 0, unchanged: 0, total: 0 });
+                
+                // Update UI
+                document.getElementById('gainers-count').textContent = stats.gainers;
+                document.getElementById('losers-count').textContent = stats.losers;
+                document.getElementById('unchanged-count').textContent = stats.unchanged;
+                document.getElementById('total-stocks').textContent = stats.total;
+            },
+            
+            // Update last update time
+            updateLastUpdateTime() {
+                const lastUpdateElement = document.getElementById('last-update-time');
+                if (lastUpdateElement && this.lastUpdateTime) {
+                    lastUpdateElement.textContent = this.lastUpdateTime.toLocaleTimeString();
+                }
+            },
+            
+            // Show error message
+            showError(message) {
+                const tableBody = document.getElementById('stock-table-body');
+                if (tableBody) {
+                    tableBody.innerHTML = `
+                        <tr>
+                            <td colspan="10">
+                                <div class="error-message">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                    ${message}
+                                </div>
+                            </td>
+                        </tr>
+                    `;
+                }
+            },
+            
+            // Formatting utilities
+            formatNumber(value, decimals = 0) {
+                if (value === null || value === undefined || value === '' || value === '-') return '-';
+                const num = parseFloat(value);
+                if (isNaN(num)) return '-';
+                return num.toLocaleString('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+            },
+            
+            formatCurrency(value) {
+                if (value === null || value === undefined || value === '' || value === '-') return '-';
+                
+                // Handle comma-separated strings
+                if (typeof value === 'string') {
+                    value = value.replace(/,/g, '');
+                }
+                
+                const num = parseFloat(value);
+                if (isNaN(num)) return '-';
+                
+                return num.toLocaleString('en-US');
+            },
+            
+            formatVolume(value) {
+                if (value === null || value === undefined || value === '' || value === '-') return '-';
+                
+                // Handle comma-separated strings
+                if (typeof value === 'string') {
+                    value = value.replace(/,/g, '');
+                }
+                
+                const num = parseFloat(value);
+                if (isNaN(num)) return '-';
+                
+                // Format large numbers with K, M suffixes
+                if (num >= 1000000) {
+                    return (num / 1000000).toFixed(1) + 'M';
+                } else if (num >= 1000) {
+                    return (num / 1000).toFixed(1) + 'K';
+                }
+                
+                return num.toLocaleString('en-US');
+            },
+            
+            formatPE(value) {
+                if (value === null || value === undefined || value === '' || value === '-') return '-';
+                const num = parseFloat(value);
+                if (isNaN(num)) return '-';
+                return num.toFixed(2);
+            },
+            
+            formatPB(value) {
+                if (value === null || value === undefined || value === '' || value === '-') return '-';
+                const num = parseFloat(value);
+                if (isNaN(num)) return '-';
+                return num.toFixed(2);
+            },
+            
+            // Auto refresh functionality
+            startAutoRefresh() {
+                // Refresh every 30 seconds
+                setInterval(() => {
+                    this.loadData();
+                }, 30000);
+            }
+        };
+
+        // Initialize when DOM is ready
+        if (typeof module !== 'undefined' && module.exports) {
+            module.exports = MarketSummary;
+        }
+    </script>
+</body>
+</html>

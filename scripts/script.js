@@ -79,7 +79,7 @@ function setActivePage() {
         '/pages/daily-prices.html': 'market-overview',
         '/pages/csx-index.html': 'market-overview',
         '/pages/trading-calendar.html': 'market-overview',
-        '/pages/companies-list.html': 'market-overview',
+        '/pages/listed-companies.html': 'market-overview',
         '/pages/trading.html': 'market-overview',
         '/pages/csx-trade.html': 'trading-platform',
         '/pages/contact.html': 'contact'

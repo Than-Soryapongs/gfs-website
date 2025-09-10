@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listed Companies | Golden Fortune (Cambodia) Securities Plc (GFS)</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- AOS Animation CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link href="../css/custom.css" rel="stylesheet">
+    <link href="../css/responsive.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <div id="header-placeholder"></div>
+
+    <main class="listed-companies bg-light">
+        <!-- Breadcrumb -->
+        <nav aria-label="breadcrumb" class="bg-light p-4">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item">
+                <a href="#"><i class="bi bi-house-door-fill"></i></a>
+                </li>
+                <li class="breadcrumb-item"><a href="#">Securities Broker</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Listed Companies</li>
+            </ol>
+        </nav>
+        
+        <div class="container py-5">
+            <h2 data-aos="fade-right" data-aos-duration="1500" class="text-center mb-5 section-title text-gradient">List of Companies</h2>
+
+            <!-- Tabs -->
+            <ul data-aos="fade-up" data-aos-duration="1500" class="nav nav-tabs mb-4" id="securitiesTabs">
+            <li class="nav-item">
+                <a class="nav-link active text-gradient" data-type="equity" href="#">Equity</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-gradient" data-type="listedBond" href="#">Bond</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-gradient" data-type="maturatedBond" href="#">Maturated Bond</a>
+            </li>
+            </ul>
+        
+            <div class="row" id="companyContainer"></div>
+        </div>  
+    </main>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="../scripts/script.js"></script>
+    
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });        
+
+        // Load header and footer
+        fetch('../templates/header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+                initMobileMenu();
+            });
+
+        fetch('../templates/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            });
+
+        document.addEventListener("DOMContentLoaded", function () {
+        const equityCompanies = [
+            { name: "Phnom Penh Water Supply Authority", imgSrc: "../public/logos/logo-ppwsa-1.jpg" },
+            { name: "MENGLY J. QUACH EDUCATION PLC.", imgSrc: "../public/logos/mjqe-logo.jpg" },
+            { name: "CAMGSM Plc.", imgSrc: "../public/logos/cellcard-logo.jpg" },
+            { name: "JS Land", imgSrc: "../public/logos/jsland-logo.jpg" },
+            { name: "DBD Engineering PLC.", imgSrc: "../public/logos/dbd-logo.jpg" },
+            { name: "PESTECH (Cambodia) PLC.", imgSrc: "../public/logos/pestech-logo.jpg" },
+            { name: "ACLEDA Bank PLC.", imgSrc: "../public/logos/acleda-logo.jpg" },
+            { name: "Grand Twins International (Cambodia) PLC.", imgSrc: "../public/logos/logo-gti-1.jpg" },
+            { name: "Sihanoukville Autonomous Port", imgSrc: "../public/logos/pas-logo.jpg" },
+            { name: "Phnom Penh Autonomous Port", imgSrc: "../public/logos/logo-ppap.jpg" },
+            { name: "Phnom Penh SEZ PLC.", imgSrc: "../public/logos/ppsez-logo.jpg" },
+        ];
+
+        const listedBondCompanies = [
+            { name: "Golden Tree Co., Ltd.", imgSrc: "../public/logos/golden-tree.png" },
+            { name: "RMA (Cambodia) PLC.", imgSrc: "../public/logos/rma-logo.jpg" },
+            { name: "CAMGSM Plc.", imgSrc: "../public/logos/cellcard-logo.jpg" },
+            { name: "Royal Railway PLC.", imgSrc: "../public/logos/royal-railway.png" },
+        ];
+
+        const maturedBondCompanies = [
+            { name: "Advanced Bank of Asia Limited", imgSrc: "../public/logos/aba-logo.png" },
+            { name: "Hattha Kaksekar Limited", imgSrc: "../public/logos/hkl-logo.png" },
+            { name: "LOLC (Cambodia) Plc.", imgSrc: "../public/logos/lolc-logo.png" },
+            { name: "Phnom Penh Commercial Bank Plc.", imgSrc: "../public/logos/ppc-logo.jpg" },
+            { name: "PRASAC MICROFINANCE INSTITUTION PLC.", imgSrc: "../public/logos/pmi-logo.png" },
+        ];
+
+        const companyContainer = document.getElementById("companyContainer");
+        const tabs = document.querySelectorAll("#securitiesTabs .nav-link");
+
+        function renderCompanies(companies) {
+            if (!companyContainer) return;  // Ensure companyContainer exists
+
+            companyContainer.innerHTML = "";
+
+            companies.forEach((company, index) => {
+            const col = document.createElement("div");
+            col.className = "col-md-4 mb-4";
+            const delay = index * 100;
+
+            col.innerHTML = `
+                <div 
+                data-aos="fade-up"
+                data-aos-delay="${delay}"
+                data-aos-duration="1000"
+                class="h-100 shadow-sm company-card text-center p-3">
+                <img src="${company.imgSrc}" alt="${company.name}" class="company-logo img-fluid mb-3">
+                <h6 data-i18n="${company.name}" class="text-dark fw-semibold">${company.name}</h6>
+                </div>
+            `;
+
+            companyContainer.appendChild(col);
+            });
+
+            setTimeout(() => {
+            AOS.refreshHard();
+            const currentLang = localStorage.getItem("language") || "en";
+            if (typeof setLanguage === "function") {
+                setLanguage(currentLang); // Make sure setLanguage is defined elsewhere
+            }
+            }, 100);
+        }        
+
+        // Tab switching
+        tabs.forEach(tab => {
+            tab.addEventListener("click", function (event) {
+            event.preventDefault();
+            tabs.forEach(t => t.classList.remove("active"));
+            this.classList.add("active");
+
+            const type = this.getAttribute("data-type");
+            if (type === "equity") {
+                renderCompanies(equityCompanies);
+            } else if (type === "listedBond") {
+                renderCompanies(listedBondCompanies);
+            } else {
+                renderCompanies(maturedBondCompanies);
+            }
+            });
+        });
+
+        renderCompanies(equityCompanies);
+        document.querySelector('#securitiesTabs .nav-link[data-type="equity"]').classList.add("active");
+        });
+    </script>
+</body>
+</html>
