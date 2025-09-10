@@ -4000,3 +4000,183 @@ main .cta-feature i {
 .csx-trade-phone img{
   max-width: 100%;
 }
+
+.contact-section {
+    padding: var(--section-padding);
+}
+
+.contact-card {
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-medium);
+    padding: 3rem;
+    margin-bottom: 2rem;
+    transition: all var(--transition-medium);
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-dark);
+}
+
+/* Contact Information Cards */
+.contact-info-card {
+    background: var(--white);
+    border-radius: var(--radius-large);
+    padding: 2rem;
+    text-align: center;
+    box-shadow: var(--shadow-light);
+    transition: all var(--transition-medium);
+    border: 1px solid rgba(0,0,0,0.05);
+    height: 100%;
+}
+
+.contact-info-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-medium);
+}
+
+.contact-icon {
+    width: 80px;
+    height: 80px;
+    background: var(--gradient-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-size: 2rem;
+    color: var(--white);
+}
+
+.contact-info-title {
+    font-size: 1.25rem;
+    font-weight: var(--font-weight-semibold);
+    color: var(--dark-primary);
+    margin-bottom: 1rem;
+}
+
+.contact-info-text {
+    color: var(--gray-medium);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Contact Form */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    font-weight: var(--font-weight-medium);
+    color: var(--dark-primary);
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.form-control {
+    border: 2px solid var(--gray-light);
+    border-radius: var(--radius-medium);
+    padding: 0.875rem 1rem;
+    font-size: 1rem;
+    transition: all var(--transition-fast);
+    background-color: var(--white);
+}
+
+.form-control:focus {
+    border-color: var(--primary-red);
+    box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.1);
+    outline: none;
+}
+
+.form-control::placeholder {
+    color: var(--gray-medium);
+}
+
+.btn-primary {
+    background: var(--gradient-primary);
+    border: none;
+    padding: 0.875rem 2rem;
+    font-size: 1rem;
+    font-weight: var(--font-weight-medium);
+    border-radius: var(--radius-medium);
+    transition: all var(--transition-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+    background: var(--gradient-secondary);
+}
+
+/* Map Container */
+.map-container {
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-medium);
+    height: 450px;
+    margin-bottom: 2rem;
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Office Hours */
+.office-hours {
+    background: var(--gradient-dark);
+    color: var(--white);
+    padding: 2rem;
+    border-radius: var(--radius-large);
+    margin-top: 2rem;
+}
+
+.office-hours h4 {
+    color: var(--secondary-gold);
+    margin-bottom: 1rem;
+    font-weight: var(--font-weight-semibold);
+}
+
+.hours-list {
+    list-style: none;
+    padding: 0;
+}
+
+.hours-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.hours-list li:last-child {
+    border-bottom: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .contact-card {
+        padding: 2rem;
+    }
+    
+    .hero-section {
+        padding: 6rem 0 3rem;
+    }
+}
